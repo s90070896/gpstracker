@@ -1,9 +1,13 @@
 package de.myge.routetracking;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -36,6 +40,7 @@ import de.myge.routetracking.arrayadapter.Model;
 import de.myge.routetracking.database.CreateDatabase;
 import de.myge.routetracking.database.Profile;
 import de.myge.routetracking.export.Export;
+import de.myge.routetracking.export.ExportActivity;
  
 /**
  * MainActivity dessen Hauptansicht GoogleMaps ist. Diese Klasse steuert das
@@ -266,13 +271,15 @@ public class DrawRouteActivity extends MapActivity {
             	startActivity(i);
             	return true;
             case R.id.export:
-			try {
-				List<Model> listModel = getAllProfiles();
-				Export export = new Export(listModel.get(0).getProfile(), db);
-				export.export();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+            	i = new Intent(DrawRouteActivity.this, ExportActivity.class);
+            	startActivity(i);
+//			try {
+//				List<Model> listModel = getAllProfiles();
+//				Export export = new Export(listModel.get(0).getProfile(), db);
+//				export.export();
+//			} catch (Exception e) {
+//				Log.e("GPS-Tracker", e.getLocalizedMessage(), e);
+//			}
             	return true;
             default:
             	return false;
