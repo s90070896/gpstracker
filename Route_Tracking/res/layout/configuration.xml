@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:mad="http://schemas.android.com/apk/res/de.myge.routetracking"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+    <de.madvertise.android.sdk.MadvertiseView
+           					android:id="@+id/madad" 
+            				android:layout_width="fill_parent" 
+				            android:layout_height="wrap_content" 
+				            mad:backgroundColor="#555" 
+				            mad:textColor="#FF1F1F" 
+				            mad:bannerType="mma" 
+				            mad:animation="fade" 
+				            mad:textSize="20" 
+				            mad:deliverOnlyText="false" />
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+	    <RadioGroup
+	        android:id="@+id/radioSpeed"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content" >
+	        <RadioButton
+	            android:id="@+id/speedKmh"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Km/h" 
+	            android:checked="true" />
+	 
+	        <RadioButton
+	            android:id="@+id/speedMph"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:text="Mp/h" />
+	    </RadioGroup>
+   </LinearLayout>
+    <Button
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
+ </LinearLayout>
