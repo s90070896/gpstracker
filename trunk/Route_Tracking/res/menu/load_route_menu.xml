@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item 
+        android:id="@+id/configuration" 
+        android:title="@string/configuration"
+        android:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/routeCharts" android:title="@string/route_chart"></item>
+    <item android:id="@+id/export" android:title="@string/export"></item>
+</menu>
