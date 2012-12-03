@@ -34,6 +34,6 @@
     	<item>New Route</item>
     	<item>Show saved route</item>
     </string-array>
-    	<string name="route_chart">Routes in charts</string>
-    	<string name="export">Export</string>
+    <string name="route_chart">Routes in charts</string>
+    <string name="export">Export</string>
 </resources>

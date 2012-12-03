@@ -35,4 +35,5 @@
     	<item>Zeige gespeicherte Routen</item>
     </string-array>
    <string name="route_chart">Routen visualisiert</string>
+   <string name="export">Export</string>
 </resources>
