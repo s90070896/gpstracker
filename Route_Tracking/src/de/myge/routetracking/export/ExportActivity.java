@@ -20,6 +20,8 @@ import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.j256.ormlite.dao.Dao;
 
 import de.myge.routetracking.R;
@@ -31,11 +33,31 @@ public class ExportActivity extends Activity{
 	private CreateDatabase db;
 	private List<String> toBeExport = new ArrayList<String>();
 	private List<Model> profilesAsList;
+	private Context context;
+	private AdView adView;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.export);
 		
+		//request TEST ads to avoid being disabled for clicking your own ads
+        AdRequest adRequest = new AdRequest();
+ 
+        //test mode on EMULATOR
+        adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
+        
+        //test mode on DEVICE (this example code must be replaced with your device uniquq ID)
+        adRequest.addTestDevice("MB120RT82011");
+        adRequest.addTestDevice("TA23703EIP"); 
+ 
+        adView = (AdView)findViewById(R.id.adMob);      
+ 
+        // Initiate a request to load an ad in test mode.
+        // You can keep this even when you release your app on the market, because
+        // only emulators and your test device will get test ads. The user will receive real ads.
+        adView.loadAd(adRequest);
+		
+		context = this;
 		// neue Instanz für den Zugriff auf die DB erzeugen
         db = new CreateDatabase(getApplicationContext());
 		
@@ -57,7 +79,7 @@ public class ExportActivity extends Activity{
 		return new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				new ExportProfiles(getApplicationContext()).execute(new Object[] {});
+				new ExportProfiles(context).execute();
 			}
 		};
 	}
@@ -75,8 +97,6 @@ public class ExportActivity extends Activity{
 						}
 					}
 				}
-				Toast.makeText(getApplicationContext(), "Export done",
-						Toast.LENGTH_LONG).show();
 			} catch (Exception e) {
 				Log.e("de.myge.routetracking", e.getLocalizedMessage(), e);
 			}
@@ -126,25 +146,33 @@ public class ExportActivity extends Activity{
 		return returnArray;
 	}
 	
-	class ExportProfiles extends AsyncTask {
+	/**
+	 * Profile auf die SDCard exportieren 
+	 * @author Jan
+	 *
+	 */
+	class ExportProfiles extends AsyncTask<Void, Void, Void> {
 		
-		private Context context;
 		private ProgressDialog dialog;
 
 		public ExportProfiles(Context context) {
-			this.context = context;
 			dialog = new ProgressDialog(context);
+			dialog.setTitle("Export");
+			dialog.setMessage("Export to sdcard/gps-tracker");
+			dialog.show();
 		}
 		
 		@Override
-		protected Object doInBackground(Object... params) {
-			exportProfiles(); 
-			return null;
+		protected Void doInBackground(Void... params) {
+			exportProfiles();
+			return null; 
 		}
 		
 		@Override
-	    protected void onPostExecute(Object result) {
+	    protected void onPostExecute(Void result) {
 			if (dialog.isShowing()) dialog.cancel();
+			Toast.makeText(getApplicationContext(), "Export done", Toast.LENGTH_LONG).show();
 		}
+
 	}
 }

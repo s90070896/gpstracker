@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads" 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+    <com.google.ads.AdView 
+	                    android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adMob"
+                        android:layout_alignParentBottom="true"
+                        ads:adUnitId="a14f9d996d5aae3"
+                        ads:adSize="BANNER"/>
     <Button 
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

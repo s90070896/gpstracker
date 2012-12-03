@@ -1,5 +1,6 @@
 package de.myge.routetracking.export;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -31,7 +32,7 @@ public class Export {
 	}
 	/**
 	 * Exportiert eine Route als KML Datei auf das Dateisystem.
-	 * @return
+	 * @return 
 	 * @throws SQLException 
 	 * @throws TransformerException 
 	 * @throws ParserConfigurationException 
@@ -40,7 +41,10 @@ public class Export {
 	public void export() throws SQLException, ParserConfigurationException, TransformerException, IOException {
 		List<GpsCoordinates> gpsCoord = db.getCoordinatesDao().queryBuilder().where().eq("profile_id", profile.getId()).query();
 		GPXParser p = new GPXParser();
-		FileOutputStream out = new FileOutputStream("/mnt/sdcard/" + profile.getProfileName() + ".gpx");
+		File path = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/gps-tracker");
+		// Ordner anlegen, falls dieser nicht existiert.
+		path.mkdirs();
+		FileOutputStream out = new FileOutputStream(path.getAbsolutePath() + "/" + profile.getProfileName() + ".gpx");
 		GPX gpx = new GPX();
 		gpx.setCreator("Myge");
 		gpx.setVersion("1.0");
