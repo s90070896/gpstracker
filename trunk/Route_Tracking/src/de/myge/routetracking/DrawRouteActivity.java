@@ -1,13 +1,9 @@
 package de.myge.routetracking;
 
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -32,6 +28,8 @@ import android.widget.ListView;
 import android.widget.SlidingDrawer;
 
 import com.flurry.android.FlurryAgent;
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.j256.ormlite.dao.Dao;
@@ -39,7 +37,6 @@ import com.j256.ormlite.dao.Dao;
 import de.myge.routetracking.arrayadapter.Model;
 import de.myge.routetracking.database.CreateDatabase;
 import de.myge.routetracking.database.Profile;
-import de.myge.routetracking.export.Export;
 import de.myge.routetracking.export.ExportActivity;
  
 /**
@@ -61,11 +58,29 @@ public class DrawRouteActivity extends MapActivity {
 	private NotificationManager notificationManager;
 	public static final int NOTIFICATION_ID = 1;
 	private SharedPreferences mPrefs;
+	private AdView adView;
 		/** Called when the activity is first created. */
 	    @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.show_tracked_route);  
+	        
+	        //request TEST ads to avoid being disabled for clicking your own ads
+	        AdRequest adRequest = new AdRequest();
+	 
+	        //test mode on EMULATOR
+	        adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
+	        
+	        //test mode on DEVICE (this example code must be replaced with your device uniquq ID)
+	        adRequest.addTestDevice("MB120RT82011");
+	        adRequest.addTestDevice("TA23703EIP");
+	 
+	        adView = (AdView)findViewById(R.id.adMob);      
+	 
+	        // Initiate a request to load an ad in test mode.
+	        // You can keep this even when you release your app on the market, because
+	        // only emulators and your test device will get test ads. The user will receive real ads.
+	        adView.loadAd(adRequest);
 	        
 	        // App Bewertung aktivieren
 	        AppRater.app_launched(this);        

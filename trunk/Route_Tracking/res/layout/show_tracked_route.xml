@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout 
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:mad="http://schemas.android.com/apk/res/de.myge.routetracking" 
+	xmlns:ads="http://schemas.android.com/apk/lib/com.google.ads" 
     android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -39,7 +39,13 @@
 				  	android:orientation="vertical"
 				  	android:id="@+id/content"
 				  	android:background="#000000">
-	                <!-- ADMOB implementieren -->
+	                <com.google.ads.AdView 
+	                    android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/adMob"
+                        android:layout_alignParentBottom="true"
+                        ads:adUnitId="a14f9d996d5aae3"
+                        ads:adSize="BANNER"/>
 				  	<Button
 					  	android:layout_width="fill_parent"
 					  	android:layout_height="wrap_content"

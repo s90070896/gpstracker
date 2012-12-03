@@ -15,6 +15,8 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
+import com.google.ads.AdRequest;
+import com.google.ads.AdView;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.GraphView.GraphViewData;
@@ -29,11 +31,25 @@ import de.myge.routetracking.errorhandling.ErrorHandling;
 public class ChartActivity extends Activity{
 	private CreateDatabase db;
 	private List<Profile> profiles;
+	private AdView adView;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.chart);
+		
+		//request TEST ads to avoid being disabled for clicking your own ads
+        AdRequest adRequest = new AdRequest();
+ 
+        //test mode on EMULATOR
+        adRequest.addTestDevice(AdRequest.TEST_EMULATOR);
+        
+        //test mode on DEVICE (this example code must be replaced with your device uniquq ID)
+        adRequest.addTestDevice("MB120RT82011");
+        adRequest.addTestDevice("TA23703EIP");
+ 
+        adView = (AdView)findViewById(R.id.adMob); 
+		
 		// Wenn ein TrackingService läuft, soll der Zugriff auf die Datenbank unterbunden werden, da
 		// es sonst zu einem Programmabsturz kommt.
 		if (RouteTrackingDialog.isMyServiceRunning("de.myge.routetracking.GpsTrackingService", getApplicationContext())) {
