@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, RouteTrackingActivity!</string>
+    <string name="app_name">Route Tracking</string>
+    <string name="control_service_start_btn_txt">Starte tracking</string>
+    <string name="control_service_stop_btn_txt">Stoppe tracking</string>
+    <string name="new_route_track_name_textview">Name der Route</string>
+    <string name="description_route_track_textview">Beschreibung</string>
+    <string name="track_name_exist_error_message">Der Routenname ist leer.</string>
+    <string name="load_track">Lade Route</string>
+    <string name="track_duration">Dauer:</string>
+    <string name="track_distance">Distanz:</string>
+    <string name="track_average_speed">Durchschnittsgeschwindigkeit:</string>
+    <string name="track_top_speed">Höchstgeschwindigkeit:</string>
+    <string name="track_draw_aditional_route">Zeichne erweiterte route</string>
+ 	<string name="delete_route">Löschen</string>
+ 	<string name="save">Speichern</string>
+ 	<string name="share_on_fb">auf Facebook teilen</string>
+ 	<string name="minutes">Minuten</string>
+ 	<string name="delete_confirm_message">Sind Sie sicher?</string>
+ 	<string name="yes">Ja</string>
+ 	<string name="no">Nein</string>
+ 	<string name="track_name">Track Name:</string>
+ 	<string name="configuration">Konfiguration</string>
+ 	<string name="gps_disabled">GPS ist deaktiviert. Bitte aktivieren Sie GPS.</string>
+ 	<string name="gps_enabled">GPS aktiviert:</string>
+ 	<string name="please_wait">Bitte warten...</string>
+ 	<string name="drawing_route">Zeichne Route</string>
+ 	<string name="calculate_information">Berechne Information</string>
+ 	<string name="enter_route_name">Name der Route</string>
+ 	<string name="tracking_service_active">tracking ist aktiv...</string>
+ 	<string name="error_visualise_routes">Routen können aktuell nicht visualisiert werden. Bitte stoppen Sie das Tracking, wenn Sie die Routen visualisieren wollen.</string>
+    <string-array name="mainmenu">
+    	<item>Neue Route</item>
+    	<item>Zeige gespeicherte Routen</item>
+    </string-array>
+   <string name="route_chart">Routen visualisiert</string>
+   <string name="export">Export</string>
+</resources>

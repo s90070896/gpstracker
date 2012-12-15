@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, RouteTrackingActivity!</string>
+    <string name="app_name">Route Tracking</string>
+    <string name="control_service_start_btn_txt">Start tracking</string>
+    <string name="control_service_stop_btn_txt">Stop tracking</string>
+    <string name="new_route_track_name_textview">Name of tracked route</string>
+    <string name="description_route_track_textview">Description</string>
+    <string name="track_name_exist_error_message">The track name is empty or already exists.</string>
+    <string name="load_track">Load Route</string>
+    <string name="track_duration">Duration:</string>
+    <string name="track_distance">Distance:</string>
+    <string name="track_average_speed">Average speed:</string>
+    <string name="track_top_speed">Top speed:</string>
+    <string name="track_draw_aditional_route">Draw additional route</string>
+ 	<string name="delete_route">Delete</string>
+ 	 <string name="save">Save</string>
+ 	<string name="minutes">minutes</string>
+ 	<string name="delete_confirm_message">Are you sure?</string>
+ 	<string name="yes">Yes</string>
+ 	<string name="no">No</string>
+ 	<string name="track_name">Track name:</string>
+ 	<string name="share_on_fb">Share on Facebook</string>
+ 	<string name="gps_disabled">GPS is disabled. Please enable GPS</string>
+ 	<string name="gps_enabled">GPS enabled:</string>
+ 	<string name="please_wait">Please wait...</string>
+ 	<string name="drawing_route">Drawing route</string>
+ 	<string name="calculate_information">Calculate information</string>
+ 	<string name="tracking_service_active">tracking in process...</string>
+ 	<string name="configuration">Configuration</string>
+ 	<string name="enter_route_name">Enter a name</string>
+ 	<string name="error_visualise_routes">Please stop the tracking mode if you want to visualise your routes.</string>
+    <string-array name="mainmenu">
+    	<item>New Route</item>
+    	<item>Show saved route</item>
+    </string-array>
+    <string name="route_chart">Routes in charts</string>
+    <string name="export">Export</string>
+</resources>

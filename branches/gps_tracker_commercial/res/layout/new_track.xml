@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/layout_root">
+    <TextView 
+   		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="@string/new_route_track_name_textview"
+    	android:layout_weight="1"/>
+    <EditText 
+    	android:id="@+id/route_name"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:layout_weight="1"/>
+    <TextView 
+   		android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="@string/description_route_track_textview"/>
+    <!-- <EditText 
+    	android:id="@+id/route_description"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:lines="7"/> -->        
+	    <Button 
+	    	android:id="@+id/start_tracking_btn" 
+	    	android:layout_gravity="bottom" 
+	    	android:layout_height="wrap_content" 
+	    	android:layout_width="fill_parent"
+	    	android:text="@string/save"/>
+	    <!-- <Button 
+	    	android:id="@+id/share_information_on_facebook" 
+	    	android:layout_gravity="bottom" 
+	    	android:layout_height="wrap_content" 
+	    	android:layout_width="wrap_content"
+	    	android:layout_weight="1" 
+	    	android:text="@string/share_on_fb"/> -->    
+</LinearLayout>
