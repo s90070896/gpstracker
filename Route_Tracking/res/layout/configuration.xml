@@ -5,16 +5,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    <de.madvertise.android.sdk.MadvertiseView
-           					android:id="@+id/madad" 
-            				android:layout_width="fill_parent" 
-				            android:layout_height="wrap_content" 
-				            mad:backgroundColor="#555" 
-				            mad:textColor="#FF1F1F" 
-				            mad:bannerType="mma" 
-				            mad:animation="fade" 
-				            mad:textSize="20" 
-				            mad:deliverOnlyText="false" />
 <LinearLayout 
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
