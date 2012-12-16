@@ -3,7 +3,6 @@ package de.myge.commercial.routetracking;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.Point;
 
 import com.google.android.maps.GeoPoint;
