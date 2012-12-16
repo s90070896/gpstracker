@@ -3,6 +3,7 @@ package de.myge.commercial.routetracking;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 import android.app.Notification;
@@ -12,6 +13,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,13 +29,14 @@ import android.widget.ListView;
 import android.widget.SlidingDrawer;
 
 import com.flurry.android.FlurryAgent;
-import com.google.ads.AdView;
+import com.google.android.maps.GeoPoint;
 import com.google.android.maps.MapActivity;
 import com.google.android.maps.MapView;
 import com.j256.ormlite.dao.Dao;
 
 import de.myge.commercial.routetracking.arrayadapter.Model;
 import de.myge.commercial.routetracking.database.CreateDatabase;
+import de.myge.commercial.routetracking.database.GpsCoordinates;
 import de.myge.commercial.routetracking.database.Profile;
 import de.myge.commercial.routetracking.export.ExportActivity;
  
@@ -206,16 +209,18 @@ public class DrawRouteActivity extends MapActivity {
 	public void drawRoute(Profile profile) throws SQLException {
 		if (profile == null) throw new IllegalArgumentException("profile cannot be null");
 		// Display an indeterminate Progress-Dialog
-        myProgressDialog = ProgressDialog.show(this,getString(R.string.please_wait), getString(R.string.drawing_route), true);
-		DrawRouteThread thread = new DrawRouteThread(this, db, mapView, profile, handler);
-		thread.run();
+//		DrawRouteThread thread = new DrawRouteThread(this, db, mapView, profile, handler);
+//		thread.run();
+		
+		DrawRouteThread thread = new DrawRouteThread(this, db, mapView);
+		thread.execute(profile);
+		
 	}
 
 	public void deleteRoute(ArrayList<Profile> list) throws SQLException {
 		// Display an indeterminate Progress-Dialog
-        myProgressDialog = ProgressDialog.show(this,getString(R.string.please_wait), getString(R.string.drawing_route), true);
-		DrawRouteThread thread = new DrawRouteThread(this, db, mapView, handler, list);
-		thread.run();
+        DrawRouteThread thread = new DrawRouteThread(this, db, mapView);
+		thread.execute(list.toArray(new Profile[list.size()]));
 	}
 	
 	private void showNotification(String text) {
@@ -230,12 +235,6 @@ public class DrawRouteActivity extends MapActivity {
 		
 		notificationManager.notify(NOTIFICATION_ID, notification);
 	}
-	private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-        	myProgressDialog.dismiss();
-        }
-    };
     
     @Override
 	  public void onDestroy() {
@@ -264,16 +263,92 @@ public class DrawRouteActivity extends MapActivity {
             case R.id.export:
             	i = new Intent(DrawRouteActivity.this, ExportActivity.class);
             	startActivity(i);
-//			try {
-//				List<Model> listModel = getAllProfiles();
-//				Export export = new Export(listModel.get(0).getProfile(), db);
-//				export.export();
-//			} catch (Exception e) {
-//				Log.e("GPS-Tracker", e.getLocalizedMessage(), e);
-//			}
             	return true;
             default:
             	return false;
         }
+    }
+    
+    class DrawRouteThread extends AsyncTask<Profile, Integer, List<GeoPoints>> {
+    	
+    	private Context c;
+		private CreateDatabase db;
+		private MapView mapView;
+		private ProgressDialog dialog;
+
+		public DrawRouteThread(Context c, CreateDatabase db, MapView mapView) {
+			this.c = c;
+			this.db = db;
+			this.mapView = mapView;
+			dialog = new ProgressDialog(c);
+    	}
+    	
+		protected void onPreExecute() {
+	        this.dialog.setMessage("Draw Route");
+	        this.dialog.show();
+	    }
+		
+		@Override
+		protected List<GeoPoints> doInBackground(Profile... params) {
+			ArrayList<GeoPoints> geoPoints = new ArrayList<DrawRouteActivity.GeoPoints>();
+			for (Profile profile : params) {
+				List<GpsCoordinates> gpsCoord;
+				try {
+					gpsCoord = db.getCoordinatesDao().queryBuilder().where().eq("profile_id", profile.getId()).query();
+					
+					for(int i = 0; i < gpsCoord.size(); i++) {
+						double latitude = gpsCoord.get(i).getLatitude();
+						double longitude = gpsCoord.get(i).getLongitude();
+						GeoPoint gp1 = calcGeoPoint(latitude, longitude);
+						i++;
+						GeoPoint gp2;
+						if(i < gpsCoord.size()) {
+							 gp2 = calcGeoPoint(latitude, longitude);
+						} else {
+							gp2 = gp1;
+						}
+						geoPoints.add(new GeoPoints(gp1, gp2));
+					} 
+				} catch (Exception e) {
+					Log.e(c.getResources().getString(R.string.app_name), e.getLocalizedMessage(), e);	
+				}
+			}
+			return geoPoints;
+		}
+		
+		@Override
+	    protected void onPostExecute(List<GeoPoints> result) {
+			for (GeoPoints gp : result) {
+				mapView.getOverlays().add(new DrawRoute(gp.gp1, gp.gp2));
+			}
+			
+			if (dialog.isShowing()) {
+	            dialog.dismiss();
+	        }
+	    }
+
+		/**
+		 * Diese Methode berechnet einen GeoPoint.
+		 * @return gibt den berechneten GeoPoint zurück.
+		 */
+		private GeoPoint calcGeoPoint(double latitude, double longitude) {
+			return new GeoPoint((int)(latitude * 1E6), (int)(Double.parseDouble(longitude * 1E6 + "")));
+		}
+    }
+    
+    class GeoPoints {
+    	private GeoPoint gp1;
+    	private GeoPoint gp2;
+    	public GeoPoints(GeoPoint gp1, GeoPoint gp2) {
+			this.gp1 = gp1;
+			this.gp2 = gp2;
+    		
+    	}
+    	public GeoPoint getGp1() {
+    		return gp1;
+    	}
+		public GeoPoint getGp2() {
+			return gp2;
+		}
     }
 }
