@@ -54,8 +54,7 @@ public class GpsTrackingService extends Service{
 		}
 		// We want this service to continue running until it is explicitly
 		// stopped, so return sticky.
-//		mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
-		mlocManager.requestLocationUpdates( LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
+		mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mlocListener);
 		return START_NOT_STICKY;
 	}
 

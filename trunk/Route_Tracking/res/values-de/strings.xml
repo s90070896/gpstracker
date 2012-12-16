@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, RouteTrackingActivity!</string>
-    <string name="app_name">Route Tracking</string>
+    <string name="app_name">GPS Tracker</string>
     <string name="control_service_start_btn_txt">Starte tracking</string>
     <string name="control_service_stop_btn_txt">Stoppe tracking</string>
     <string name="new_route_track_name_textview">Name der Route</string>
