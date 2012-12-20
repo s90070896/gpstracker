@@ -17,6 +17,7 @@
  	<string name="save">Speichern</string>
  	<string name="share_on_fb">auf Facebook teilen</string>
  	<string name="minutes">Minuten</string>
+ 	<string name="account">Account</string>
  	<string name="delete_confirm_message">Sind Sie sicher?</string>
  	<string name="yes">Ja</string>
  	<string name="no">Nein</string>
@@ -36,4 +37,11 @@
     </string-array>
    <string name="route_chart">Routen visualisiert</string>
    <string name="export">Export</string>
+    <string name="firstName">Vorname</string>
+    <string name="lastName">Nachname</string>
+    <string name="email_address">E-Mail Adresse</string>
+    <string name="password">Passwort</string>
+    <string name="retry_password">Passwort wiederholen</string>
+   <string name="connect_to_server">Verbindung zum Server herstellen</string>
+   <string name="error_101">Benutzername oder Passwort falsch</string>
 </resources>

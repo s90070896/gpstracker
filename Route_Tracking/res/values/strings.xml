@@ -18,6 +18,7 @@
  	<string name="minutes">minutes</string>
  	<string name="delete_confirm_message">Are you sure?</string>
  	<string name="yes">Yes</string>
+ 	<string name="account">Account</string>
  	<string name="no">No</string>
  	<string name="track_name">Track name:</string>
  	<string name="share_on_fb">Share on Facebook</string>
@@ -36,4 +37,11 @@
     </string-array>
     <string name="route_chart">Routes in charts</string>
     <string name="export">Export</string>
+    <string name="firstName">First name</string>
+    <string name="lastName">Last name</string>
+    <string name="email_address">E-Mail address</string>
+    <string name="password">Password</string>
+    <string name="retry_password">Retry password</string>
+    <string name="connect_to_server">Connecting to server</string>
+    <string name="error_101">Wrong username or password</string>
 </resources>

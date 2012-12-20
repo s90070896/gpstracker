@@ -38,6 +38,7 @@ import de.myge.routetracking.arrayadapter.Model;
 import de.myge.routetracking.database.CreateDatabase;
 import de.myge.routetracking.database.Profile;
 import de.myge.routetracking.export.ExportActivity;
+import de.myge.routetracking.sync.AccountActivity;
  
 /**
  * MainActivity dessen Hauptansicht GoogleMaps ist. Diese Klasse steuert das
@@ -288,13 +289,10 @@ public class DrawRouteActivity extends MapActivity {
             case R.id.export:
             	i = new Intent(DrawRouteActivity.this, ExportActivity.class);
             	startActivity(i);
-//			try {
-//				List<Model> listModel = getAllProfiles();
-//				Export export = new Export(listModel.get(0).getProfile(), db);
-//				export.export();
-//			} catch (Exception e) {
-//				Log.e("GPS-Tracker", e.getLocalizedMessage(), e);
-//			}
+            	return true;
+            case R.id.account:
+            	i = new Intent(DrawRouteActivity.this, AccountActivity.class);
+            	startActivity(i);
             	return true;
             default:
             	return false;
