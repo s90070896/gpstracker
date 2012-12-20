@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
     <item 
         android:id="@+id/configuration" 
-        android:title="@string/configuration"
-        android:showAsAction="ifRoom|withText"/>
+        android:title="@string/configuration"/>
     <item android:id="@+id/routeCharts" android:title="@string/route_chart"></item>
     <item android:id="@+id/export" android:title="@string/export"></item>
+    <item android:id="@+id/account" android:title="@string/account"></item>
 </menu>

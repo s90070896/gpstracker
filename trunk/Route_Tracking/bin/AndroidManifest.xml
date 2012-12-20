@@ -28,6 +28,7 @@
         	android:resource="@xml/startstopwidget"/>
 		</receiver> -->
         <activity android:name=".ConfigurationActivity"></activity>
+        <activity android:name=".sync.AccountActivity"></activity>
         <activity android:name="ChartActivity"></activity>
         <activity android:name=".export.ExportActivity"></activity>
         <activity android:name="com.google.ads.AdActivity" android:configChanges= "keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"/>

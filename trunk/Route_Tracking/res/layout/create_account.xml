@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <EditText 
+        android:id="@+id/registration_first_name"
+        android:hint="@string/firstName"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"/>
+    <EditText 
+        android:id="@+id/registration_last_name"
+        android:hint="@string/lastName"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"/>
+    <EditText 
+        android:id="@+id/registration_email_address"
+        android:hint="@string/email_address"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"/>
+   	<EditText 
+        android:id="@+id/registration_password"
+        android:hint="@string/password"
+        android:textSize="20sp"
+        android:inputType="textPassword"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"/>
+   	<EditText 
+        android:id="@+id/registration_retry_password"
+        android:hint="@string/retry_password"
+        android:textSize="20sp"
+        android:inputType="textPassword"
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"/>
+</LinearLayout>
