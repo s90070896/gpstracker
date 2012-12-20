@@ -3,7 +3,6 @@ package de.myge.commercial.routetracking;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.List;
 
 import android.app.Notification;
@@ -76,8 +75,8 @@ public class DrawRouteActivity extends MapActivity {
 			
 	        // MapView instanziieren
 	        mapView = (MapView) findViewById(R.id.mapView);
-	        // Karten Zoomelemente einblenden
-	        mapView.setBuiltInZoomControls(false);
+//	        // Karten Zoomelemente einblenden
+//	        mapView.setBuiltInZoomControls(true);
 	         
 	        selectProfileNames();
 	        handleTracking();
@@ -209,6 +208,7 @@ public class DrawRouteActivity extends MapActivity {
 	public void drawRoute(Profile profile) throws SQLException {
 		if (profile == null) throw new IllegalArgumentException("profile cannot be null");
 		// Display an indeterminate Progress-Dialog
+//		myProgressDialog = ProgressDialog.show(this,getString(R.string.please_wait), getString(R.string.drawing_route), true);
 //		DrawRouteThread thread = new DrawRouteThread(this, db, mapView, profile, handler);
 //		thread.run();
 		
@@ -221,7 +221,17 @@ public class DrawRouteActivity extends MapActivity {
 		// Display an indeterminate Progress-Dialog
         DrawRouteThread thread = new DrawRouteThread(this, db, mapView);
 		thread.execute(list.toArray(new Profile[list.size()]));
+//		myProgressDialog = ProgressDialog.show(this,getString(R.string.please_wait), getString(R.string.drawing_route), true);
+//		DrawRouteThread thread = new DrawRouteThread(this, db, mapView, handler, list);
+//		thread.run();
 	}
+	
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+        	myProgressDialog.dismiss();
+        }
+    };
 	
 	private void showNotification(String text) {
 		Notification notification = new Notification(R.drawable.tracker, text, System.currentTimeMillis());
@@ -297,13 +307,11 @@ public class DrawRouteActivity extends MapActivity {
 					gpsCoord = db.getCoordinatesDao().queryBuilder().where().eq("profile_id", profile.getId()).query();
 					
 					for(int i = 0; i < gpsCoord.size(); i++) {
-						double latitude = gpsCoord.get(i).getLatitude();
-						double longitude = gpsCoord.get(i).getLongitude();
-						GeoPoint gp1 = calcGeoPoint(latitude, longitude);
+						GeoPoint gp1 = calcGeoPoint( gpsCoord.get(i).getLatitude(), gpsCoord.get(i).getLongitude());
 						i++;
 						GeoPoint gp2;
 						if(i < gpsCoord.size()) {
-							 gp2 = calcGeoPoint(latitude, longitude);
+							 gp2 = calcGeoPoint(gpsCoord.get(i).getLatitude(), gpsCoord.get(i).getLongitude());
 						} else {
 							gp2 = gp1;
 						}

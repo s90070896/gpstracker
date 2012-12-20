@@ -15,7 +15,9 @@
 	        android:layout_height="fill_parent"
 	        android:enabled="true"
 	        android:clickable="true"
-	        android:apiKey="075FtmRytowRCtx7uqh46PPW2o1q493dqJ_aTsA" />
+	        android:apiKey="075FtmRytowSS0RcJRNGTVirX-VlENuPKWxfzTw" />
+	        <!-- produktiv: android:apiKey="075FtmRytowRCtx7uqh46PPW2o1q493dqJ_aTsA"
+	        	 debug: android:apiKey="075FtmRytowSS0RcJRNGTVirX-VlENuPKWxfzTw" /> -->
 	  	<!-- <de.myge.routetracking.customuielements.WrappingSlidingDrawer -->
 	  	<SlidingDrawer
 			android:layout_width="fill_parent"
