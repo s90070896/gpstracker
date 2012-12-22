@@ -48,13 +48,14 @@ public class Export {
 		GPX gpx = new GPX();
 		gpx.setCreator("Myge");
 		gpx.setVersion("1.0");
+		Route route = new Route();
 		for(GpsCoordinates gps : gpsCoord) {			
 			Waypoint waypoint = new Waypoint();
 			waypoint.setLatitude(gps.getLatitude());
 			waypoint.setLongitude(gps.getLongitude());
-			gpx.addWaypoint(waypoint);
+			route.addRoutePoint(waypoint);
 		}
-		gpx.addRoute(new Route());
+		gpx.addRoute(route);
 		gpx.addTrack(new Track());
 		p.writeGPX(gpx, out);
 		out.close();
